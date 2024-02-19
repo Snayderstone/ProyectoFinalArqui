@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/orden_compras")
+@RequestMapping("/proveedor/orden_compras")
 public class OrdenCompController {
 
     @Autowired

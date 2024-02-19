@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/productos")
+@RequestMapping("/inventario/productos")
 public class ProductoController {
     @Autowired
     private IProductoService service;

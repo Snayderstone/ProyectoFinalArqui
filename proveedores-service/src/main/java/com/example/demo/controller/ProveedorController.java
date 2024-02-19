@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/proveedores")
+@RequestMapping("/proveedor/proveedores")
 public class ProveedorController {
 
     @Autowired

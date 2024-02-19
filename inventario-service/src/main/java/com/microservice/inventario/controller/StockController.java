@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/stocks")
+@RequestMapping("/inventario/stocks")
 @Slf4j
 public class StockController {
     @Autowired

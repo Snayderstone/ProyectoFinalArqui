@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/inventario/categorias")
 @Slf4j
 public class CategoriaController {
     @Autowired

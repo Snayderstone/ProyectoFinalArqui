@@ -7,42 +7,42 @@ scrape_configs:
   - job_name: 'cliente-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8080' ]
+      - targets: [ 'localhost:8092' ]
         labels:
           application: 'cliente-service'
 
   - job_name: 'eureka-registry-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8080' ]
+      - targets: [ 'localhost:8099' ]
         labels:
           application: 'eureka-registry-service'
 
   - job_name: 'gateway-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8080' ]
+      - targets: [ 'localhost:8080' ]
         labels:
           application: 'gateway-service'
 
   - job_name: 'inventario-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8080' ]
+      - targets: [ 'localhost:8095' ]
         labels:
           application: 'inventario-service'
 
   - job_name: 'proveedores-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8080' ]
+      - targets: [ 'localhost:8096' ]
         labels:
           application: 'proveedores-service'
           
   - job_name: 'ventas-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ 'host.docker.internal:8080' ]
+      - targets: [ 'localhost:8097' ]
         labels:
           application: 'ventas-service'
   

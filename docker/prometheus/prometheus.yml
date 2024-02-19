@@ -6,8 +6,42 @@ scrape_configs:
   - job_name: 'product-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ '192.168.1.71:8091']
+      - targets: [ 'host.docker.internal:8091']
         labels:
           application: 'product-service'
-
-  
+  - job_name: 'cliente-service-job'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8092' ]
+        labels:
+          application: 'cliente-service'
+  - job_name: 'eureka-registry-service-job'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8099' ]
+        labels:
+          application: 'eureka-registry-service'
+  - job_name: 'gateway-service-job'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8080' ]
+        labels:
+          application: 'gateway-service'
+  - job_name: 'inventario-service-job'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8095' ]
+        labels:
+          application: 'inventario-service'
+  - job_name: 'proveedor-service-job'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8096' ]
+        labels:
+          application: 'proveedor-service'
+  - job_name: 'ventas-service-job'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8097' ]
+        labels:
+          application: 'ventas-service'

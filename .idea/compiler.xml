@@ -10,8 +10,10 @@
         <module name="cliente-service" />
         <module name="config-service" />
         <module name="ventas-service" />
+        <module name="gateway-service" />
         <module name="proveedores-service" />
         <module name="product-service" />
+        <module name="eureka-registry-service" />
         <module name="shopping-service" />
         <module name="inventario-service" />
       </profile>
@@ -21,6 +23,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="cliente-service" options="-parameters" />
       <module name="config-service" options="-parameters" />
+      <module name="eureka-registry-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
       <module name="inventario-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
       <module name="proveedores-service" options="-parameters" />

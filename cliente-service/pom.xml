@@ -91,6 +91,8 @@
 			<groupId>io.github.openfeign</groupId>
 			<artifactId>feign-micrometer</artifactId>
 		</dependency>
+		<!--SSO-->
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

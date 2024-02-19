@@ -3,46 +3,37 @@ global:
   evaluation_interval: 10s
 
 scrape_configs:
- 
-  - job_name: 'cliente-service-job'
+  - job_name: 'config-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ '192.168.1.71:8092' ]
+      - targets: ['host.docker.internal:8080']
         labels:
-          application: 'cliente-service'
+          application: 'Config Service'
+
+  - job_name: 'customer-service-job'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8080' ]
+        labels:
+          application: 'Customer Service'
 
   - job_name: 'eureka-registry-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ '192.168.1.71:8099' ]
+      - targets: [ 'host.docker.internal:8080' ]
         labels:
-          application: 'eureka-registry-service'
+          application: 'Eureka Service'
 
-  - job_name: 'gateway-service-job'
+  - job_name: 'product-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ '192.168.1.71:8080' ]
+      - targets: [ 'host.docker.internal:8080' ]
         labels:
-          application: 'gateway-service'
+          application: 'Product Service'
 
-  - job_name: 'inventario-service-job'
+  - job_name: 'shopping-service-job'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: [ '192.168.1.71:8095' ]
+      - targets: [ 'host.docker.internal:8080' ]
         labels:
-          application: 'inventario-service'
-
-  - job_name: 'proveedores-service-job'
-    metrics_path: '/actuator/prometheus'
-    static_configs:
-      - targets: [ '192.168.1.71:8096' ]
-        labels:
-          application: 'proveedores-service'
-          
-  - job_name: 'ventas-service-job'
-    metrics_path: '/actuator/prometheus'
-    static_configs:
-      - targets: [ '192.168.1.71:8097' ]
-        labels:
-          application: 'ventas-service'
-  
+          application: 'Shopping Service'

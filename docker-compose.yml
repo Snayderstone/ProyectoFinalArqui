@@ -10,7 +10,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: 2846
     ports:
-      - "3306:3306"
+      - "3312:3312"
     volumes:
       - mysql_clientes_data:/var/lib/mysql
   #----------------------MICROSERVICIOS-----------

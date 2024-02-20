@@ -1,4 +1,4 @@
-package com.microservice.inventario.util;
+package com.example.demo.util;
 
 import java.io.IOException;
 

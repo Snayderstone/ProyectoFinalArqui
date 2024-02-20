@@ -1,9 +1,24 @@
 version: '3'
 services:
+  mysql_clientes:
+    image: mysql:8.0
+    container_name: mysql_clientes_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2846
+      MYSQL_DATABASE: clientes_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 2846
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_clientes_data:/var/lib/mysql
+  #----------------------MICROSERVICIOS-----------
+  #-------------------Patrones----------
   #Monitoreo
   prometheus:
     container_name: prometheus_container
-    image: prom/prometheus:v2.37.1
+    image: prom/prometheus:v3
     restart: always
     extra_hosts:
       - host.docker.internal:host-gateway
@@ -11,11 +26,13 @@ services:
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./docker/prometheus/data:/prometheus
     ports:
       - "9090:9090"
   grafana:
     container_name: grafana_container
     image: grafana/grafana-oss:8.5.2
+    #depends_on: prometheus
     ports:
       - "3000:3000"
 
@@ -26,3 +43,12 @@ services:
     ports:
       - "9411:9411"
 
+volumes:
+  mysql_clientes_data:
+  mysql_inventario_data:
+  mysql_productos_data:
+  mysql_proveedores_data:
+  mysql_compras_data:
+  mysql_ventas_data:
+  mongodb_data:
+  prometheus_data:  # Crea volumen para datos de Prometheus

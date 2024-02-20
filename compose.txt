@@ -1,0 +1,128 @@
+version: '3'
+services:
+  mysql_clientes:
+    image: mysql:8.0
+    container_name: mysql_clientes_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2846
+      MYSQL_DATABASE: clientes_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 2846
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_clientes_data:/var/lib/mysql
+
+  mysql_inventario:
+    image: mysql:8.0
+    container_name: mysql_inventario_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2846
+      MYSQL_DATABASE: inventario_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 2846
+    ports:
+      - "3307:3307"
+    volumes:
+      - mysql_inventario_data:/var/lib/mysql
+
+  mysql_productos:
+    image: mysql:8.0
+    container_name: mysql_productos_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2846
+      MYSQL_DATABASE: db_products
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 2846
+    ports:
+      - "3308:3308"
+    volumes:
+      - mysql_productos_data:/var/lib/mysql
+
+  # Agregar un contenedor MongoDB para proveedores
+  mongo_proveedores:
+    image: mongo:4.4
+    container_name: mongo_proveedores_container
+    restart: always
+    environment:
+      # Opcionalmente, puedes definir variables de entorno específicas para MongoDB
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 2846  # Cambia la contraseña si lo deseas
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_proveedores_data:/data/db
+
+  mysql_compras:
+    image: mysql:8.0
+    container_name: mysql_compras_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2846
+      MYSQL_DATABASE: db_shoppings
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 2846
+    ports:
+      - "3310:3310"
+    volumes:
+      - mysql_compras_data:/var/lib/mysql
+
+  mysql_ventas:
+    image: mysql:8.0
+    container_name: mysql_ventas_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2846
+      MYSQL_DATABASE: ventas_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 2846
+    ports:
+      - "3311:3311"
+    volumes:
+      - mysql_ventas_data:/var/lib/mysql
+
+
+  #----------------------MICROSERVICIOS-----------
+
+
+  #-------------------Patrones----------
+  #Monitoreo
+  prometheus:
+    container_name: prometheus_container
+    image: prom/prometheus:v3
+    restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./docker/prometheus/data:/prometheus
+    ports:
+      - "9090:9090"
+  grafana:
+    container_name: grafana_container
+    image: grafana/grafana-oss:8.5.2
+    #depends_on: prometheus
+    ports:
+      - "3000:3000"
+
+  #Tracing
+  zipkin:
+    container_name: zipkin_container
+    image : openzipkin/zipkin
+    ports:
+      - "9411:9411"
+
+volumes:
+  mysql_clientes_data:
+  mysql_inventario_data:
+  mysql_productos_data:
+  mysql_proveedores_data:
+  mysql_compras_data:
+  mysql_ventas_data:
+  mongodb_data:
+  prometheus_data:  # Crea volumen para datos de Prometheus

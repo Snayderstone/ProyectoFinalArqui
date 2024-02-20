@@ -5,9 +5,9 @@ services:
     container_name: mysql_clientes_container
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 2846
+      MYSQL_ROOT_PASSWORD: luis10@gmailconfig.
       MYSQL_DATABASE: clientes_db
-      MYSQL_USER: root
+      MYSQL_USER: luisin
       MYSQL_PASSWORD: 2846
     ports:
       - "3312:3312"
@@ -18,7 +18,7 @@ services:
   #Monitoreo
   prometheus:
     container_name: prometheus_container
-    image: prom/prometheus:v3
+    image: prom/prometheus:v2.37.1
     restart: always
     extra_hosts:
       - host.docker.internal:host-gateway
@@ -26,7 +26,6 @@ services:
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./docker/prometheus/data:/prometheus
     ports:
       - "9090:9090"
   grafana:
@@ -51,4 +50,3 @@ volumes:
   mysql_compras_data:
   mysql_ventas_data:
   mongodb_data:
-  prometheus_data:  # Crea volumen para datos de Prometheus

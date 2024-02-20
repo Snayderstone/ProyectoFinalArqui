@@ -1,22 +1,11 @@
 version: '3'
 services:
-  mysql_clientes:
-    image: mysql:8.0
-    container_name: mysql_clientes_container
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: clientes_db
-    ports:
-      - "3312:3306"
-    volumes:
-      - mysql_clientes_data:/var/lib/mysql
   #----------------------MICROSERVICIOS-----------
   #-------------------Patrones----------
   #Monitoreo
   prometheus:
     container_name: prometheus_container
-    image: prom/prometheus:v2.37.1
+    image: prom/prometheus:v2.31.0
     restart: always
     extra_hosts:
       - host.docker.internal:host-gateway
@@ -32,19 +21,9 @@ services:
     #depends_on: prometheus
     ports:
       - "3000:3000"
-
   #Tracing
   zipkin:
     container_name: zipkin_container
     image : openzipkin/zipkin
     ports:
       - "9411:9411"
-
-volumes:
-  mysql_clientes_data:
-  mysql_inventario_data:
-  mysql_productos_data:
-  mysql_proveedores_data:
-  mysql_compras_data:
-  mysql_ventas_data:
-  mongodb_data:

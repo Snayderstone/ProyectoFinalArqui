@@ -1,18 +1,16 @@
 version: '3'
 services:
-  mysql_clientes:
-    image: mysql:8.0
-    container_name: mysql_clientes_container
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: 2846
-      MYSQL_DATABASE: clientes_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 2846
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_clientes_data:/var/lib/mysql
+    mysql_clientes:
+      image: mysql:8.0
+      container_name: mysql_clientes_container
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: 12345678
+        MYSQL_DATABASE: clientes_db
+      ports:
+        - "3312:3306"
+      volumes:
+        - mysql_clientes_data:/var/lib/mysql
 
   mysql_inventario:
     image: mysql:8.0

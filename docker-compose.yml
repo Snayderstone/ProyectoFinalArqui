@@ -1,11 +1,26 @@
 version: '3'
 services:
-  #----------------------MICROSERVICIOS-----------
-  #-------------------Patrones----------
+
+  #----------------------DATA BASES-------------------
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
+      - MYSQL_USER=luis
+      - MYSQL_PASSWORD=mauFJcuf5dhRMQrjj
+      - MYSQL_DATABASE=clientes_db
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+
+  #----------------------MICROSERVICES----------------
+
+  #-------------------ARCHITECTURAL PATTERNS----------
   #Monitoreo
   prometheus:
     container_name: prometheus_container
-    image: prom/prometheus:v2.31.0
+    image: prom/prometheus:v2.49.0
     restart: always
     extra_hosts:
       - host.docker.internal:host-gateway
@@ -27,3 +42,6 @@ services:
     image : openzipkin/zipkin
     ports:
       - "9411:9411"
+
+volumes:
+  db_data:

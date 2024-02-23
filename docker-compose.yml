@@ -3,14 +3,14 @@ services:
 
   #----------------------DATA BASES-------------------
   db:
-    image: mysql:latest
+    image: mysql:8.0
     environment:
       - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
       - MYSQL_USER=luis
       - MYSQL_PASSWORD=mauFJcuf5dhRMQrjj
       - MYSQL_DATABASE=clientes_db
     volumes:
-      - db_data:/var/lib/mysql
+      - ./docker/schemas:/var/lib/mysql
     ports:
       - '3306:3306'
 

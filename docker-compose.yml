@@ -2,19 +2,42 @@ version: '3'
 services:
 
   #----------------------DATA BASES-------------------
-  db:
+  mysqlClienteService:
     image: mysql:8.0
+    container_name: mysql_cliente_service_bd_container
     environment:
       - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
       - MYSQL_USER=luis
       - MYSQL_PASSWORD=mauFJcuf5dhRMQrjj
       - MYSQL_DATABASE=clientes_db
     volumes:
-      - ./docker/schemas:/var/lib/mysql
+      #- ./docker/Esquemas:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     ports:
       - '3306:3306'
 
   #----------------------MICROSERVICES----------------
+  cliente-service:
+    container_name: cliente_service_container
+    image: snayderstone/cliente_service_img_dhub:1.0.3-finalArqui
+    environment:
+      - SERVER_CONFIG_URI= http://localhost:8081
+      - SERVER_CONFIG_USER= admin
+      - SERVER_CONFIG_PASS= admin
+      - DATABASE_URL=jdbc:mysql://mysqlClienteService:3306/clientes_db
+      - DATABASE_USERNAME=luis
+      - DATABASE_PASSWORD=mauFJcuf5dhRMQrjj
+    ports:
+      - "8092:8092"
+    depends_on:
+      - config-server
+      - mysqlClienteService
+
+  config-server:
+     image: snayderstone/config_service_img_dhub:1.0.2-finalArqui
+     container_name: config_server_container
+     ports:
+       - "8081:8081"
 
   #-------------------ARCHITECTURAL PATTERNS----------
   #Monitoreo
@@ -44,4 +67,4 @@ services:
       - "9411:9411"
 
 volumes:
-  db_data:
+  mysql_data:

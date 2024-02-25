@@ -19,14 +19,14 @@ services:
   #----------------------MICROSERVICES----------------
   cliente-service:
     container_name: cliente_service_container
-    image: snayderstone/cliente_service_img_dhub:1.0.3-finalArqui
+    image: snayderstone/cliente_service_img_dhub:1.0.4-finalArqui
     environment:
-      - SERVER_CONFIG_URI= http://localhost:8081
+      - SERVER_CONFIG_URI= http://config-server:8081
       - SERVER_CONFIG_USER= admin
       - SERVER_CONFIG_PASS= admin
-      - DATABASE_URL=jdbc:mysql://mysqlClienteService:3306/clientes_db
-      - DATABASE_USERNAME=luis
-      - DATABASE_PASSWORD=mauFJcuf5dhRMQrjj
+      #- DATABASE_URL=jdbc:mysql://mysqlClienteService:3306/clientes_db
+      #- DATABASE_USERNAME=luis
+      #- DATABASE_PASSWORD=mauFJcuf5dhRMQrjj
     ports:
       - "8092:8092"
     depends_on:

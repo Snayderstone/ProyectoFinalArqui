@@ -1,9 +1,10 @@
 #server.port=8092
-#spring.application.name= customer-service-config
+#spring.application.name= customer-service
+#spring.datasource.url=${DATABASE_URL}
 #spring.datasource.url=jdbc:mysql://localhost:3306/db_customers
 #spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
-#spring.datasource.username=root
-#spring.datasource.password=2846
+#spring.datasource.username=${DATABASE_USERNAME}
+#spring.datasource.password=${DATABASE_PASSWORD}
 #spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 #spring.jpa.hibernate.ddl-auto=update
 #spring.jpa.hibernate.show-sql=true
@@ -12,8 +13,8 @@ spring:
   application:
     name: cliente-service
   cloud:
-   config:
-     enable: true
-     uri: http://localhost:8081
-     username: admin
-     password: admin
+    config:
+      enable: true
+      uri: ${SERVER_CONFIG_URI}
+      username: ${SERVER_CONFIG_USER}
+      password: ${SERVER_CONFIG_PASS}

@@ -21,12 +21,19 @@ public class FacturaVenta {
     @Column(nullable = false)
     private LocalDateTime fechaVenta;
 
-    @OneToMany(mappedBy = "facturaVenta", cascade = {CascadeType.ALL}, orphanRemoval = true)
-    private List<DetalleVenta> detalleVentas;
+    @Column(name = "descuentoVenta", nullable = false)
+    private double descuento;
+
+    @Column(name = "numeroPedido", nullable = false)
+    private int numeroPedido;
 
     @Column(nullable = false)
     private BigDecimal total;
+
     @Column(nullable = false)
     private Integer idProducto;
+
+    @OneToMany(mappedBy = "facturaVenta", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<DetalleVenta> detalleVentas;
 
 }

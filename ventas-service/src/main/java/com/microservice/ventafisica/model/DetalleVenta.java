@@ -25,6 +25,16 @@ public class DetalleVenta {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private int cantidad;
 
+    @Column(name = "ivaVenta", nullable = false)
+    private double ivaVenta;
+
+    @Column(name = "precio", nullable = false)
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    private double precio;
+
+    @Column(name = "correoCliente", nullable = false, length = 50)
+    private String correoCliente;
+
     @Column(nullable = false, length = 5)
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
     private BigDecimal subTotal;
